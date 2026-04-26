@@ -263,10 +263,21 @@ export default async function Dashboard(props: any) {
               </div>
 
               <div className="grid grid-cols-2 gap-px bg-gray-100">
-                <div className="bg-white p-6">
-                  <p className="text-xs text-gray-400 font-bold uppercase">资金调度</p>
-                  <p className={`text-xl font-bold mt-1 ${score >= 60 ? 'text-blue-600' : 'text-gray-800'}`}>{positionAdv}</p>
-                  <p className={`text-sm mt-2 font-medium ${stateColor}`}>{marketState}</p>
+                <div className="bg-white p-6 flex flex-col justify-between">
+                  <div>
+                    <p className="text-xs text-gray-400 font-bold uppercase">资金调度 & 核心指标</p>
+                    <p className={`text-xl font-bold mt-1 ${score >= 60 ? 'text-blue-600' : 'text-gray-800'}`}>{positionAdv}</p>
+                  </div>
+                  <div className="flex items-center justify-between mt-3 pt-3 border-t border-gray-100">
+                    <p className={`text-sm font-medium ${stateColor}`}>{marketState}</p>
+                    {/* 👇 新增的 RSI 动态标签 */}
+                    <div className="bg-gray-50 px-2 py-1 rounded text-sm font-bold border border-gray-200 shadow-sm">
+                      <span className="text-gray-500 mr-1">RSI:</span>
+                      <span className={selectedData.rsi < 35 ? 'text-green-600' : selectedData.rsi > 65 ? 'text-red-500' : 'text-gray-800'}>
+                        {selectedData.rsi.toFixed(2)}
+                      </span>
+                    </div>
+                  </div>
                 </div>
                 <div className="bg-white p-6">
                   <p className="text-xs text-gray-400 font-bold uppercase">做多推荐 (LEAPS 买入单)</p>
